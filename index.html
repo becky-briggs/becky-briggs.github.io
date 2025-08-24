@@ -299,11 +299,17 @@
             <div class="p-6">
               <div class="w-full h-[95vh]">
                 <iframe 
+                  id="resumeFrame"
                   src="assets/resume-becky-briggs.pdf#view=FitH"
                   class="w-full h-full rounded-lg border-0"
                   title="Becky Briggs Resume"
-                  width="100%">
+                  width="100%" height="800px">
                 </iframe>
+                <script>
+                  document.getElementById("resumeFrame").contentWindow.onload = function() {
+                      this.document.getElementsByTagName("img")[0].style.width="100%";
+                  };
+                  </script>
               </div>
             </div>
           </div>
