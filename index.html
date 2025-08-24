@@ -4,6 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuOpenIcon = document.querySelector('.block.h-6.w-6');
+        const menuCloseIcon = document.querySelector('.hidden.h-6.w-6');
+        
+        mobileMenuButton.addEventListener('click', function() {
+          const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+          
+          // Toggle aria-expanded attribute
+          mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+          
+          // Toggle mobile menu visibility
+          if (isExpanded) {
+            mobileMenu.classList.add('hidden');
+            menuOpenIcon.classList.remove('hidden');
+            menuOpenIcon.classList.add('block');
+            menuCloseIcon.classList.remove('block');
+            menuCloseIcon.classList.add('hidden');
+          } else {
+            mobileMenu.classList.remove('hidden');
+            menuOpenIcon.classList.remove('block');
+            menuOpenIcon.classList.add('hidden');
+            menuCloseIcon.classList.remove('hidden');
+            menuCloseIcon.classList.add('block');
+          }
+        });
+      });
+    </script>
   </head>
 
   <div class="min-h-full">
@@ -43,7 +73,7 @@
           </button>
         </div>
       </div>
-      <div class="sm:hidden" id="mobile-menu">
+      <div class="sm:hidden hidden" id="mobile-menu">
         <div class="space-y-1 px-2 pb-3 pt-2 sm:px-3">
           <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
           <a href="#" class="block rounded-md px-4 text-medium font-medium text-white" aria-current="page">About</a>
@@ -249,6 +279,7 @@
             </div>
           </div>
         </section>
+
       </div>
     </body>
   </div>
